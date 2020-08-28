@@ -1,4 +1,5 @@
-﻿using HelicopterPhysics.Inputs;
+﻿using System.Globalization;
+using HelicopterPhysics.Inputs;
 using TMPro;
 using UnityEngine;
 
@@ -15,16 +16,18 @@ public class GaguePanel : MonoBehaviour
 
 
     [Header("Other References")]
-    public KeyboardHeliInput Input;
+    public InputController Input;
 
     private void Update()
     {
-        RawThrottle.text = Input.ThrottleInput.ToString();
-        StickyThrottle.text = Input.StickyThrottle.ToString();
-        Collective.text = Input.CollectiveInput.ToString();
-        StickyCollective.text = Input.StickyCollective.ToString();
-        Cyclic.text = "(" + Input.CyclicInput.x + "," + Input.CyclicInput.y + ")";
-        Pedal.text = Input.PedalInput.ToString();
+        if(!Input)
+            return;
+        RawThrottle.text = Input.activeInput.ThrottleInput.ToString(CultureInfo.InvariantCulture);
+        StickyThrottle.text = Input.activeInput.StickyThrottle.ToString(CultureInfo.InvariantCulture);
+        Collective.text = Input.activeInput.CollectiveInput.ToString(CultureInfo.InvariantCulture);
+        StickyCollective.text = Input.activeInput.StickyCollective.ToString(CultureInfo.InvariantCulture);
+        Cyclic.text = "(" + Input.activeInput.CyclicInput.x + "," + Input.activeInput.CyclicInput.y + ")";
+        Pedal.text = Input.activeInput.PedalInput.ToString(CultureInfo.InvariantCulture);
     }
 
 }

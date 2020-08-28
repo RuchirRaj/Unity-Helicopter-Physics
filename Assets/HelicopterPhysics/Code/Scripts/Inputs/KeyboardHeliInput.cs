@@ -6,27 +6,22 @@ namespace HelicopterPhysics.Inputs
 
         protected override void HandleThrottle()
         {
-            base.HandleThrottle();
             ThrottleInput = Input.GetAxis("Throttle");
         }
 
         protected override void HandlePedal()
         {
-            base.HandlePedal();
-            CollectiveInput = Input.GetAxis("Collective");
+            PedalInput = Input.GetAxis("Pedal");
         }
 
         protected override void HandleCollective()
         {
-            base.HandleCollective();
-
-            PedalInput = Input.GetAxis("Pedal");
+            CollectiveInput = Input.GetAxis("Collective");
         }
 
 
         protected override void HandleCyclic()
         {
-            base.HandleCyclic();
             Vector2 temp = new Vector2(Horizontal, Vertical);
 
             CyclicInput = temp;
